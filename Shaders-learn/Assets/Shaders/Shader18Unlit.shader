@@ -1,4 +1,4 @@
-﻿Shader "NiksShaders/Shader18Unlit"
+﻿Shader "heemin.lee/Shader18Unlit"
 {
     Properties
     {
@@ -14,7 +14,7 @@
         {
             CGPROGRAM
 // Upgrade NOTE: excluded shader from DX11; has structs without semantics (struct v2f members position)
-#pragma exclude_renderers d3d11
+//#pragma exclude_renderers d3d11
             #pragma vertex vert
             #pragma fragment frag
          
@@ -47,8 +47,14 @@
                 float h = clamp( dot(d,p)/dot(p,p), 0.0, 1.0 );
                 //float h = dot(d,p)/dot(p,p);
                 float l = length(d - p*h);
-
-                return 1.0 - smoothstep(line_width, line_width+edge_thickness, l);
+                   
+                float gradient = 0.0;
+                const float gradient_angle = UNITY_PI * 0.5;
+                if (length(d) < radius) {
+                    float angle = fmod(theta + atan2(d.y, d.x), UNITY_TWO_PI);
+                    gradient = clamp(gradient_angle - angle, 0.0, gradient_angle) / gradient_angle * 0.5;
+                }
+                return gradient + 1.0 - smoothstep(line_width, line_width+edge_thickness, l);
             }
 
             float circle(float2 pt, float2 center, float radius, float line_width, float edge_thickness){
@@ -69,7 +75,13 @@
             fixed4 frag (v2f i) : SV_Target
             {
                 fixed3 color = onLine(i.uv.y, 0.5, 0.002, 0.001) * _AxisColor;//xAxis
+                color += onLine(i.uv.x, 0.5, 0.002, 0.001) * _AxisColor;//xAxis
                 
+                float2 center = 0.5;
+                color += circle(i.uv, center, 0.3, 0.002, 0.001) * _AxisColor;
+                color += circle(i.uv, center, 0.2, 0.002, 0.001) * _AxisColor;
+                color += circle(i.uv, center, 0.1, 0.002, 0.001) * _AxisColor;
+                color += sweep(i.uv, center, 0.3, 0.003, 0.001) * _SweepColor;
                 return fixed4(color, 1.0);
             }
             ENDCG

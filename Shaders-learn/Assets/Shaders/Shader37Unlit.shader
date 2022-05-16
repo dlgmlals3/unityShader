@@ -35,7 +35,7 @@
             float4 frag (v2f i) : COLOR
             {
                 float2 p = i.position.xy * 2.0;
-                float scale = 800.0;
+                float scale = 200;
                 fixed3 color;
                 bool marble = true;
                 float noise;

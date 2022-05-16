@@ -1,16 +1,18 @@
-﻿Shader "NiksShaders/Shader34Unlit"
+﻿Shader "heemin.lee/Shader34Unlit"
 {
     Properties
     {
         _MainTex("Main Texture", 2D) = "white" {}
     }
-    SubShader
+        SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags { "Queue" = "Transparent" }
         LOD 100
 
         Pass
         {
+            ZWrite off
+            Blend SrcAlpha OneMinusSrcAlpha
             CGPROGRAM
             #pragma vertex vert_img
             #pragma fragment frag
