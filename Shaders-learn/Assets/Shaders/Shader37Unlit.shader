@@ -1,4 +1,4 @@
-﻿Shader "NiksShaders/Shader37Unlit"
+﻿Shader "heemin.lee/Shader37Unlit"
 {
     Properties
     {

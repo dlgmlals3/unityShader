@@ -6,7 +6,7 @@
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags { "LightMode"="ForwardBase" }
      
         LOD 100
 
@@ -18,6 +18,7 @@
             #pragma fragment frag
 
             #include "UnityCG.cginc"
+            #include "UnityLightingCommon.cginc"
 
             struct v2f
             {
@@ -37,9 +38,14 @@
                 float3 normal = normalize(v.vertex.xyz);
                 float4 s = float4(normal * _Radius * 0.01, v.vertex.w);
                 float4 pos = lerp(v.vertex, s, delta);
+                half3 dnormal = lerp(v.normal, normal, delta);  
 
                 o.vertex = UnityObjectToClipPos(pos);
-                o.diff = 1;
+                
+                //half3 worldNormal = UnityObjectToWorldNormal(v.normal);
+                half3 worldNormal = UnityObjectToWorldNormal(dnormal);
+                half nl = max(0, dot(worldNormal, _WorldSpaceLightPos0.xyz));
+                o.diff = nl * _LightColor0;
 
                 return o;
             }

@@ -9,6 +9,7 @@
         _BumpMap ("Bumpmap", 2D) = "bump" {}
         _RimColor ("Rim Color", Color) = (1,1,1,1)
         _RimPower ("Rim Power", Range(0.5,8.0)) = 3.0
+        _Amount("Extrusion Amount", Range(-1, 1)) = 0
     }
     SubShader
     {
@@ -17,7 +18,7 @@
 
         CGPROGRAM
         // Physically based Standard lighting model, and enable shadows on all light types
-        #pragma surface surf Standard fullforwardshadows
+        #pragma surface surf Standard fullforwardshadows vertex:vert
 
         // Use shader model 3.0 target, to get nicer looking lighting
         #pragma target 3.0
@@ -32,6 +33,10 @@
             float3 viewDir;
         };
 
+        float _Amount;
+        void vert(inout appdata_full v) {
+            v.vertex.xyz += v.normal * _Amount * 0.01f;
+        }
         half _Smoothness;
         half _Metallic;
         fixed4 _Color;

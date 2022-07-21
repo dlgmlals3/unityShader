@@ -30,8 +30,8 @@
             {
                 v2f o;
 
-                float delta = 0;
-                
+                float delta = (_SinTime.w + 1.0) / 2.0;
+                delta /= 4.0;
                 float4 s = float4(normalize(v.vertex.xyz)*_Radius*0.01, v.vertex.w);
                 float4 pos = lerp(v.vertex, s, delta);
 

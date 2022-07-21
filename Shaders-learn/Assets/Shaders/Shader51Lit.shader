@@ -1,4 +1,4 @@
-﻿Shader "NiksShaders/Shader51Lit"
+﻿Shader "heemin.lee/Shader51Lit"
 {
     Properties {
         _MainTex ("Texture", 2D) = "white" {}
@@ -19,7 +19,7 @@
         sampler2D _MainTex;
 
         void surf (Input IN, inout SurfaceOutput o) {
-            o.Albedo = 1;
+            o.Albedo = tex2D(_MainTex, IN.uv_MainTex).rgb;
         }
         ENDCG
     }

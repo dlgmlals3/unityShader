@@ -44,6 +44,25 @@
 
         ENDCG
 
+            Pass{
+                Cull Front
+                CGPROGRAM
+                #pragma vertex vert
+                #pragma fragment frag
+                half _OutlineWidth;
+                float4 vert(float4 position : POSITION, float3 normal : NORMAL) : SV_POSITION {
+                    position.xyz += normal * _OutlineWidth;
+                    return UnityObjectToClipPos(position);
+
+                }
+                half4 _OutlineColor;
+                half4 frag() : SV_TARGET{
+                    return _OutlineColor;
+                }
+            ENDCG
+
+        }
+
     }
 
 }

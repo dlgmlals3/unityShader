@@ -21,11 +21,11 @@ Material:
     m_TexEnvs:
     - _BumpMap:
         m_Texture: {fileID: 2800000, guid: 49da03d2273f14c4ab186c399231c322, type: 3}
-        m_Scale: {x: 1.5, y: 1.5}
-        m_Offset: {x: 0, y: 0}
+        m_Scale: {x: 1.3, y: 1.72}
+        m_Offset: {x: 0.16, y: -0.32}
     - _Cube:
         m_Texture: {fileID: 8900000, guid: b0ecc484e1c124d82ab91e1a7efa6346, type: 2}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 0.97, y: 0.95}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
         m_Texture: {fileID: 0}
@@ -46,7 +46,7 @@ Material:
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+        m_Offset: {x: -0.96, y: 0.67}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -81,3 +81,4 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+  m_BuildTextureStacks: []

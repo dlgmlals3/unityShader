@@ -1,4 +1,4 @@
-﻿Shader "NiksShaders/Shader46Unlit"
+﻿Shader "heemin.lee/Shader46Unlit"
 {
     Properties
     {
@@ -17,6 +17,7 @@
             #pragma fragment frag
 
             #include "UnityCG.cginc"
+            #include "noiseSimplex.cginc"
 
             struct v2f
             {
@@ -32,7 +33,13 @@
                 v2f o;
                 
                 o.noise = 0;
-                o.pos = UnityObjectToClipPos(v.vertex);
+                o.noise.x = 10.0 * -0.1 * turbulence( 0.5 * v.normal + _Time.z);
+                float3 size = 100;
+                float b = _Scale * 0.5 * pnoise(0.05 * v.vertex + _Time.z, size);
+                float displacement = b - _Scale * o.noise.x;
+                float3 newPosition = v.vertex + v.normal * displacement;
+                
+                o.pos = UnityObjectToClipPos(newPosition);
                 o.uv = v.texcoord;
 
                 return o;

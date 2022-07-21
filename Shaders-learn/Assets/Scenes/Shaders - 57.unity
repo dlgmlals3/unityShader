@@ -38,12 +38,12 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.36325118, g: 0.3671275, b: 0.33910328, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 11
+  serializedVersion: 12
   m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -96,8 +96,10 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_LightingSettings: {fileID: 4890085278179872738, guid: c25a7d8d6feef7f479a3b3a78c3641a6,
+    type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -117,6 +119,8 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 1
+    maxJobWorkers: 0
+    preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: b8134b17e57b0443fa818419fe8b0516, type: 2}
@@ -229,8 +233,9 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1775990536}
   m_Enabled: 1
-  serializedVersion: 9
+  serializedVersion: 10
   m_Type: 1
+  m_Shape: 0
   m_Color: {r: 0.990566, g: 0.990566, b: 0.990566, a: 1}
   m_Intensity: 1.27
   m_Range: 10
@@ -279,6 +284,7 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &1775990538
@@ -311,10 +317,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_WarningMessage
       value: "\nBinding warning: Some generic clip(s) animate transforms that are
-        already bound by a Humanoid avatar. These transforms can only be changed by
-        Humanoid clips.\n\tTransform 'Character1_Hips'\n\tTransform 'Character1_LeftHandMiddle1'\n\tTransform
-        'Character1_Spine'\n\tTransform 'Character1_LeftHandThumb3'\n\tTransform 'Character1_RightUpLeg'\n\tTransform
-        'Character1_LeftHandRing2'\n\tTransform 'Character1_Spine1'\n\tTransform 'Character1_LeftHandRing1'\n\tTransform
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'Character1_Hips'\n\tTransform 'Character1_LeftHandMiddle1'\n\tTransform
+        'Character1_Spine'\n\tTransform 'Character1_LeftHandThumb3'\n\tTransform
+        'Character1_RightUpLeg'\n\tTransform 'Character1_LeftHandRing2'\n\tTransform
+        'Character1_Spine1'\n\tTransform 'Character1_LeftHandRing1'\n\tTransform
         'jaw'\n\tTransform 'Character1_RightArm'\n\tand more ...\n\tFrom animation
         clip 'Idle'"
       objectReference: {fileID: 0}
@@ -323,6 +330,26 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: dd3991ca1a3354c92b63b91d4a918f7c, type: 2}
+    - target: {fileID: -4216859302048453862, guid: 0db69ba8067d04dae94b1d040bf30cc0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 0db69ba8067d04dae94b1d040bf30cc0,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 0db69ba8067d04dae94b1d040bf30cc0,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 0db69ba8067d04dae94b1d040bf30cc0,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 0db69ba8067d04dae94b1d040bf30cc0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -337,6 +364,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -3.28
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 0db69ba8067d04dae94b1d040bf30cc0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7468704
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 0db69ba8067d04dae94b1d040bf30cc0,
         type: 3}
@@ -355,16 +387,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 0db69ba8067d04dae94b1d040bf30cc0,
         type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7468704
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 0db69ba8067d04dae94b1d040bf30cc0,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 0db69ba8067d04dae94b1d040bf30cc0,
-        type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
@@ -378,25 +400,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 0db69ba8067d04dae94b1d040bf30cc0,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 0db69ba8067d04dae94b1d040bf30cc0,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 0db69ba8067d04dae94b1d040bf30cc0,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.7
-      objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 0db69ba8067d04dae94b1d040bf30cc0,
         type: 3}
       propertyPath: m_Name
       value: Demon_bomb_allinone
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 0db69ba8067d04dae94b1d040bf30cc0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0db69ba8067d04dae94b1d040bf30cc0, type: 3}
@@ -447,6 +459,8 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -471,6 +485,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &2105089168
 MeshFilter:
   m_ObjectHideFlags: 0

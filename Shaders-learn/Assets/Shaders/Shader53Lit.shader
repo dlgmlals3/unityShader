@@ -1,4 +1,4 @@
-﻿Shader "NiksShaders/Shader53Lit"
+﻿Shader "heemin.lee/Shader53Lit"
 {
     Properties {
         _MainTex ("Texture", 2D) = "white" {}
@@ -31,6 +31,8 @@
         void surf (Input IN, inout SurfaceOutput o) {
             o.Albedo = tex2D (_MainTex, IN.uv_MainTex).rgb;
             o.Normal = UnpackNormal (tex2D (_BumpMap, IN.uv_BumpMap));
+            float rim = max(0.0, _RimWidth - saturate(dot(o.Normal, normalize(IN.viewDir))));
+            o.Emission = _RimColor.rgb * pow(rim, _RimPower);
         }
         ENDCG
     }
