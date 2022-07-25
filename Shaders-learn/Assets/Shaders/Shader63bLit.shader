@@ -5,8 +5,15 @@
 
     SubShader {
       
-      Tags { "Queue" = "Geometry" }
+      Tags { "Queue" = "Geometry-1" }
       
+      ColorMask 0
+      ZWrite Off
+      Stencil {
+        Ref 1
+        Comp always
+        Pass replace
+      }
       CGPROGRAM
       
       #pragma surface surf Lambert

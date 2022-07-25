@@ -3,6 +3,9 @@
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        _Radius("Radius", Range(0, 3)) = 1
+        _Position("Position", Vector) = (0,0,0,0)
+        _CircleColor("Circle Color", color) = (1,1,1,1)
     }
     SubShader
     {
@@ -29,6 +32,7 @@
                 fixed3 diff : COLOR0;
                 fixed3 ambient : COLOR1;
                 float4 pos : SV_POSITION;
+                float4 worldPos : TEXCOORD2;
             };
 
             v2f vert (appdata_base v)
@@ -40,12 +44,17 @@
                 half nl = max(0, dot(worldNormal, _WorldSpaceLightPos0.xyz));
                 o.diff = nl * _LightColor0.rgb;
                 o.ambient = ShadeSH9(half4(worldNormal,1));
+                o.worldPos = mul(unity_ObjectToWorld, v.vertex);
+
                 // compute shadows data
                 TRANSFER_SHADOW(o)
                 return o;
             }
 
             sampler2D _MainTex;
+            float4 _Position;
+            fixed4 _CircleColor;
+            float _Radius;
 
             float circle(float2 pt, float2 center, float radius, float line_width, float edge_thickness){
                 float2 p = pt - center;
@@ -65,7 +74,10 @@
                 fixed3 lighting = i.diff * shadow + i.ambient;
                 col *= lighting;
 
-                return fixed4(col, 1);
+                float inCircle = circle(i.worldPos.xz, _Position.xz, _Radius, _Radius * 0.1, _Radius * 0.01);
+                fixed3 finalColor = lerp(col, _CircleColor, inCircle);
+
+                return fixed4(finalColor, 1);
             }
             ENDCG
         }
